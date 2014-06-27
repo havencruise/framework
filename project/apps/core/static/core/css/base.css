@@ -48,7 +48,7 @@ fieldset.form-fieldset .field-wrapper .label {
 }
 fieldset.form-fieldset .field { display:inline-block; clear:right; width: 65%; padding-left: 4px;}
 fieldset.form-fieldset .required .field { 
-  background: url('../../coreapp/img/icons/asterisk.png') no-repeat top left;
+  background: url('../../core/img/icons/asterisk.png') no-repeat top left;
 }
 fieldset.form-fieldset .field input[type="text"], 
 fieldset.form-fieldset .field input[type="password"], 
@@ -64,7 +64,7 @@ fieldset.form-fieldset div.field-wrapper .help-text,
 fieldset.form-fieldset div.field-wrapper .help-icon, 
 .field-wrapper .help-icon{
     display: inline-block; height: 16px; width: 16px;margin-left: 10px;
-    background: url('../../coreapp/img/icons/help_info.png') center center no-repeat;    
+    background: url('../../core/img/icons/help_info.png') center center no-repeat;    
 }
 fieldset.form-fieldset div.field-wrapper .help-icon:hover .help-text, 
 .field-wrapper .help-icon:hover .help-text{ display:inline-block; }
@@ -82,7 +82,7 @@ form.fieldset .submit-wrapper{display:block; position:absolute; bottom:20px; rig
     vertical-align:top; text-align:left; padding-right: 12px; 
 }
 .dialog-form .required .field{ 
-    background: url('../../coreapp/img/icons/asterisk.png') no-repeat top left; 
+    background: url('../../core/img/icons/asterisk.png') no-repeat top left; 
     padding-left: 4px;
 }
 .dialog-form .field { display:inline-block; clear:right; width: 65%; padding-left: 4px;}
@@ -144,12 +144,12 @@ Web: http://matthewjamestaylor.com/blog/perfect-3-column.htm
 }
 /*** Expandos styles ***/
 ul li.expandos > a{
-    background: url('../../coreapp/img/icons/arrow_right.png') no-repeat center left; 
+    background: url('../../core/img/icons/arrow_right.png') no-repeat center left; 
     padding-left: 15px;
     font-weight:bold;
 }
 ul li.expandos.open > a{
-    background: url('../../coreapp/img/icons/arrow_down.png') no-repeat center left; 
+    background: url('../../core/img/icons/arrow_down.png') no-repeat center left; 
 }
 ul li.expandos ul{
     display: none;

@@ -21,7 +21,7 @@ def get_form_field(form, field):
 def all_fields_hidden(form):
     return all([field.is_hidden for field in form])
 
-@register.inclusion_tag('shore/form_fieldset_fields.html')
+@register.inclusion_tag('core/form_fieldset_fields.html')
 def form_as_fieldset_fields(form, fieldsets):
     """
     Render the form as a fieldset form. 

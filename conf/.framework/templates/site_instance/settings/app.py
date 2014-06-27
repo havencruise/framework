@@ -20,5 +20,5 @@ INSTALLED_APPS = (
     'django_extensions',
     'south',
     'pipeline',
-    'shore'
+    'core'
 )
