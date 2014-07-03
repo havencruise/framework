@@ -1,20 +1,14 @@
-from django.conf.urls import patterns, url, include
-from django.http import HttpResponse
-from django.shortcuts import render
-
+from django.conf.urls import patterns, include
 from django.contrib import admin
+from core.utils.renderutils import render_to
+
 admin.autodiscover()
 
-# def default_view(request):
-#     return HttpReponse('{}', 
-#             mimetype='application/json')
+@render_to('index.html')
+def default_view(request):
+    return {}
 
-
-def the_default_view(request):
-    return render(request, 
-            'base/index.html', {})
-
-urlpatterns = patterns(
-    (r'^$', 'urls.the_default_view'),
+urlpatterns = patterns('',
+    (r'^$', 'urls.default_view'),
     (r'^__admin__/', include(admin.site.urls)),
 )
