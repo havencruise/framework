@@ -5,6 +5,7 @@ from django.db.models.signals import post_syncdb
 
 if 'pipeline' in settings.INSTALLED_APPS:
     template.add_to_builtins('pipeline.templatetags.compressed')
+    settings.STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 
 def sync_app_static(app, **kwargs):

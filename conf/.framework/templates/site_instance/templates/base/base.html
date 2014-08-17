@@ -3,7 +3,7 @@
 <head>
 {% block head %}
   <title>{% block head-title %}{% endblock %}</title>
-  <link rel="shortcut icon" href="" type="image/ico" />
+  <link rel="shortcut icon" href="{{STATIC_URL}}core/img/icons/asterisk.png" type="image/ico" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta charset="{% block head-charset %}utf-8{% endblock %}" />
@@ -28,7 +28,7 @@
   <link href="https://plus.google.com/123456789012345678901" rel="publisher" />
 
   {% block head-css %}
-
+    {% compressed_css 'core' %}
   {% endblock head-css %}
 
   {% block head-js %}
@@ -42,6 +42,7 @@
       var _USER_ID = -1;
     {% endif %}
   </script>
+  {% compressed_js 'core' %}
   {% endblock head-js %}
 
   {% block head-extra-js %}{% endblock %}
@@ -55,7 +56,7 @@
     <header class="clearfix">
 
       <a href="/" class="logo">
-        <img src="" title="Default logo, please change"/> 
+        <!-- <img src="" title="Default logo, please change"/>  -->
         Site Name
       </a>
 
