@@ -1,5 +1,5 @@
 # BASE DEFAULT libs -- DO NOT REMOVE ANY
-    django==1.6.2
+    django==1.6.11
     django-extensions==1.2.5
     South==0.8.4
     ConcurrentLogHandler
