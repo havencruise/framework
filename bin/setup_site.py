@@ -33,12 +33,8 @@ def create_site(name,
             "Please provide a site name, e.g. %s <site_name>\n\n" % NAME)
         sys.exit(1)
 
-    site_app_path = '%s/%s' % (directory, name)
-
+    # make media_dir
     try:
-        os.makedirs("%s" % directory)
-        sys.stdout.write("\tCreated %s\n" % (directory))
-
         os.makedirs("%s" % media_dir)
         sys.stdout.write("\tCreated %s\n" % media_dir)
     except:
@@ -46,13 +42,10 @@ def create_site(name,
 
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
 
-    files = glob.iglob(os.path.join(templates_dir, "*.py"))
-    for _file in files:
-        if os.path.isfile(_file):
-            shutil.copy2(_file, directory)
-
-    shutil.copytree("%s/site_instance/" % templates_dir,
-                    site_app_path,
+    import pdb; pdb.set_trace()
+    # copy template framework into site directory
+    shutil.copytree("%s/" % templates_dir,
+                    directory,
                     ignore=shutil.ignore_patterns('.svn'))
 
     site_resources = "%s/%s" % (static_dir, name)
@@ -68,7 +61,7 @@ def create_site(name,
 
 def generate_secret_key(site_name, directory=SITE_DIR):
     from django.utils.crypto import get_random_string
-    f = open("%s/%s/settings/app.py" % (SITE_DIR, site_name), "a")
+    f = open("%s/settings/app.py" % SITE_DIR, "a")
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     f.write("\nSECRET_KEY = '%s'\n" % get_random_string(50, chars))
     f.close()
