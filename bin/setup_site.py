@@ -42,7 +42,6 @@ def create_site(name,
 
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
 
-    import pdb; pdb.set_trace()
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
                     directory,
