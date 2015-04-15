@@ -17,7 +17,7 @@ if os.path.isdir(deployment_location + '/env/lib/python2.7/site-packages'):
     import site
     site.addsitedir(deployment_location + '/env/lib/python2.7/site-packages')
 
-sys.path += [deployment_location + '/project/apps', deployment_location + '/conf', deployment_location + sitename, deployment_location + sitename + '/' + sitename]
+sys.path += [deployment_location + '/project/apps', deployment_location + '/conf', deployment_location + sitename]
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

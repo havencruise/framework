@@ -11,7 +11,7 @@ TEMPLATE_LOADERS = (
 
 
 TEMPLATE_DIRS = (
-    APP_ROOT + '/' + SITE_NAME + '/' + SITE_NAME + '/templates',
+    APP_ROOT + '/' + SITE_NAME + '/templates',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

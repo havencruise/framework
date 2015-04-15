@@ -1,10 +1,14 @@
 import os
 
+BASE_DIR = os.path.abspath(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    '../../../'))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-     ('Prashanth', 'sinewpod@gmail.com'),
+    ('Prashanth', 'sinewpod@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -17,7 +21,3 @@ SITE_NAME = os.environ['DJANGO_SITE_NAME']
 ROOT_URLCONF = SITE_NAME + '.urls'
 
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/?timeout=3600'
-
-
-
-
