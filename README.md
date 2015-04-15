@@ -16,3 +16,12 @@ You should setup your virtualenv in the root directory.
 	pip install -r requirements.txt
 	python bin/setup_site.py <site_name>
 
+### Environment import order
+
+There are many different ways to organize environment specific settings
+Settings are imported in this order so that deployment to servers becomes easier.
+However edit manage.py and <site_name>/settings/__init__.py if you want to manage it in another way.
+
+1. conf/settings_override/default/*.py
+2. <site_name>/settings/*.py
+3. conf/settings_override/<env>/*.py
