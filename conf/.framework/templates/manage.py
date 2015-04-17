@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys, os
-sys.path += ['../project/apps', '../conf', '.']
+sys.path += ['..', '../project/apps', '../conf', '.']
 
 for i in sys.argv:
     if i.startswith('--env'):
