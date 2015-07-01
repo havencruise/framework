@@ -1,8 +1,10 @@
 import os
+
 SITE_NAME = os.environ['DJANGO_SITE_NAME']
 
 if not SITE_NAME:
-    raise EnvironmentError, 'DJANGO_SITE_NAME not found in environment'
+    raise EnvironmentError('DJANGO_SITE_NAME not found in environment')
+
 
 PIPELINE_JS = {
     'core': {
@@ -11,7 +13,7 @@ PIPELINE_JS = {
         ),
         'output_filename': '%s/js/framework.r?.js' % SITE_NAME
     },
-    'jquery' : {
+    'jquery': {
         'external_urls': (
             'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
             'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js'
@@ -25,10 +27,10 @@ PIPELINE_CSS = {
     'core': {
         'source_filenames': (
             'core/js/base.css',
-         ),
+        ),
         'output_filename': '%s/css/framework.r?.css' % SITE_NAME
     },
-    'jquery' : {
+    'jquery': {
         'external_urls': (
             'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css',
         ),

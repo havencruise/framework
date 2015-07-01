@@ -12,3 +12,6 @@ __pycache__/
 
 # Environment stuff
 env/
+
+# Sublime project folders
+framework.sublime-*

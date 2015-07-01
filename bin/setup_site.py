@@ -10,7 +10,7 @@ NAME = sys.argv[0]
 BASE_DIR = os.path.abspath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), '../'))
 TEMPLATES_DIR = "%s/conf/.framework/templates" % BASE_DIR
-RESOURCES_DIR = "%s/resources" % BASE_DIR
+RESOURCES_DIR = "%s/static" % BASE_DIR
 MEDIA_DIR = "%s/%s" % (BASE_DIR, "media")
 STATIC_DIRS = ("js", "swf", "css", "img")
 

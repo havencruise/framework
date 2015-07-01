@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-import sys, os
-sys.path += ['..', '../project/apps', '../conf', '.']
+import sys
+import os
+
+sys.path += ['../apps', '../conf', '..', '.']
 
 for i in sys.argv:
     if i.startswith('--env'):
@@ -29,7 +31,7 @@ sys.path += ['./%s' % project_name]
 from django.core.management import execute_from_command_line
 
 try:
-    import settings # Assumed to be in the same directory.
+    import settings  # Assumed to be in the same directory.
 except ImportError:
     import sys
     sys.stderr.write("Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)

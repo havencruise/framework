@@ -5,7 +5,7 @@ APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__
 # Example: "/home/media/media.lawrence.com/"
 
 MEDIA_ROOT = APP_ROOT + '/media/upload'
-STATIC_ROOT = APP_ROOT + '/resources'
+STATIC_ROOT = APP_ROOT + '/static'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
