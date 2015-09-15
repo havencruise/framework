@@ -44,6 +44,9 @@ def create_site(name,
 
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
 
+    # copy manage.py to BASE_DIR
+    shutil.copyfile("%s" % MANAGEPY_PATH, os.path.join(BASE_DIR, "manage.py"))
+
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
                     directory,
