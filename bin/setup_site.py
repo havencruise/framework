@@ -45,7 +45,7 @@ def create_site(name,
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
 
     # copy manage.py to BASE_DIR
-    shutil.copyfile("%s" % MANAGEPY_PATH, BASE_DIR)
+    shutil.copyfile("%s" % MANAGEPY_PATH, os.path.join(BASE_DIR, "manage.py"))
 
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
@@ -75,6 +75,14 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.stderr.write(
             "Please provide a site name, e.g. %s <site_name>\n\n" % NAME)
+        sys.exit(1)
+
+    try:
+        # check if django is installed
+        import django
+    except ImportError:
+        sys.stderr.write(
+            "\n`django` is  not installed. Please run `pip install -r requirements.txt` first \n\n")
         sys.exit(1)
 
     site_name = sys.argv[1]
