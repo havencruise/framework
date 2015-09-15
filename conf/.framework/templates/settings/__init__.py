@@ -1,19 +1,21 @@
 
-settings_files = ('auth', 'app', 'email', 'database', 'locale', 'log', 'media', 'storage', 'other', 'template')
+settings_files = ('app', 'auth', 'email', 'database', 'locale', 'log', 'media',
+                  'storage', 'other', 'template')
 
 try:
     from settings._generated_settings import *
 except:
-    # settings are not generated, go through and try to import from default, then current directory, then environment
-
-    import os, sys
+    # Settings are not generated
+    # Go through current directory, then environment
+    import os
+    import sys
 
     env = os.environ['DJANGO_ENVIRONMENT']
 
     if env is None:
-        raise EnvironmentError, 'DJANGO_ENVIRONMENT not set'
+        raise EnvironmentError('DJANGO_ENVIRONMENT not set')
 
-    locations = ('settings_override.default', 'settings', 'settings_override.env.%s' % env)
+    locations = ('settings', 'settings_override.env.%s' % env)
 
     for loc in locations:
         for settings_file in settings_files:

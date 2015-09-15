@@ -14,9 +14,7 @@ TEMPLATES_DIR = "%s/conf/.framework/templates" % BASE_DIR
 RESOURCES_DIR = "%s/%s" % (BASE_DIR, "static")
 MEDIA_DIR = "%s/%s" % (BASE_DIR, "media")
 STATIC_DIRS = ("js", "swf", "css", "img")
-
 SITE_DIR = '%s/%s', (BASE_DIR, 'default_site_name')
-MANAGEPY_PATH = "%s/conf/.framework/manage.py" % BASE_DIR
 
 
 def dir_exists(name, directory):
@@ -35,17 +33,7 @@ def create_site(name,
             "Please provide a site name, e.g. %s <site_name>\n\n" % NAME)
         sys.exit(1)
 
-    # make media_dir
-    try:
-        os.makedirs("%s" % media_dir)
-        sys.stdout.write("\tCreated %s\n" % media_dir)
-    except:
-        pass
-
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
-
-    # copy manage.py to BASE_DIR
-    shutil.copyfile("%s" % MANAGEPY_PATH, os.path.join(BASE_DIR, "manage.py"))
 
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
@@ -54,6 +42,7 @@ def create_site(name,
 
     site_resources = "%s/%s" % (static_dir, name)
 
+    # make static dirs
     for static_dir in STATIC_DIRS:
         try:
             os.makedirs("%s/%s" % (site_resources, static_dir))
@@ -61,6 +50,13 @@ def create_site(name,
                              (static_dir, site_resources))
         except:
             pass
+
+    # make media_dir
+    try:
+        os.makedirs("%s" % media_dir)
+        sys.stdout.write("\tCreated %s\n" % media_dir)
+    except:
+        pass
 
 
 def generate_secret_key(site_name, directory=SITE_DIR):
