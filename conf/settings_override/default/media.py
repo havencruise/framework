@@ -17,14 +17,3 @@ STATIC_URL = '/static/'
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
-
-PIPELINE = True
-PIPELINE_AUTO = True
-PIPELINE_VERSION = True
-PIPELINE_VERSION_REMOVED_OLD = True
-PIPELINE_CSS_COMPRESSOR = ()
-PIPELINE_JS_COMPRESSOR = ()
-PIPELINE_DISABLE_WRAPPER = True
-
-
-#PIPELINE SETTINGS ARE IN <site_name>.settings.media file

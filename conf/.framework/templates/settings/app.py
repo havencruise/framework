@@ -1,4 +1,4 @@
-SITE_ID = 1 # you should change this if its multi site
+SITE_ID = 1     # you should change this if its multi site
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -20,6 +20,5 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django_extensions',
-    'compressor',
     'core'
 )

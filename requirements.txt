@@ -3,7 +3,7 @@
     django-extensions>=1.2.5
     ConcurrentLogHandler
     django-picklefield>=0.3.1
-    django_compressor
+    #django_compressor
 
 # Additional env specific libs
     MySQL-python

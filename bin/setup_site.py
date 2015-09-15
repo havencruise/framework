@@ -9,12 +9,14 @@ NAME = sys.argv[0]
 
 BASE_DIR = os.path.abspath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), '../'))
+
 TEMPLATES_DIR = "%s/conf/.framework/templates" % BASE_DIR
-RESOURCES_DIR = "%s/static" % BASE_DIR
+RESOURCES_DIR = "%s/%s" % (BASE_DIR, "static")
 MEDIA_DIR = "%s/%s" % (BASE_DIR, "media")
 STATIC_DIRS = ("js", "swf", "css", "img")
 
-SITE_DIR = '%s/%s', (BASE_DIR, 'default_name')
+SITE_DIR = '%s/%s', (BASE_DIR, 'default_site_name')
+MANAGEPY_PATH = "%s/conf/.framework/manage.py" % BASE_DIR
 
 
 def dir_exists(name, directory):
@@ -41,6 +43,9 @@ def create_site(name,
         pass
 
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
+
+    # copy manage.py to BASE_DIR
+    shutil.copyfile("%s" % MANAGEPY_PATH, BASE_DIR)
 
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
