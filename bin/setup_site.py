@@ -35,6 +35,19 @@ def create_site(name,
 
     sys.stdout.write("\tCopying site templates to %s\n" % directory)
 
+    # Generate manage.py
+    from django.template import Engine, Context
+    engine = Engine()
+    f = open(os.path.join(os.path.dirname(templates_dir),
+                          'manage.txt'))
+    template = engine.from_string(f.read())
+    f.close()
+    managepy_file_contents = template.render(Context({'site_name': name}))
+    managepy_file = open(os.path.join(BASE_DIR, 'manage.py'), 'w+')
+    managepy_file.write(managepy_file_contents)
+    managepy_file.close()
+    os.chmod(os.path.join(BASE_DIR, 'manage.py'), 755)
+
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
                     directory,

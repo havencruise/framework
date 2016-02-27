@@ -10,6 +10,8 @@ for i in sys.argv:
         os.environ['DJANGO_ENVIRONMENT'] = env
         break
 
+os.environ['DJANGO_SITE_NAME'] = '{{site_name}}'
+
 if os.name in ("nt", "dos"):
     os.environ['DJANGO_SITE_NAME'] = os.path.dirname(os.path.abspath(__file__)).split('\\')[-1]
 else:
@@ -24,21 +26,20 @@ except:
     os.environ['DJANGO_ENVIRONMENT'] = 'local'
 
 
-sys.path += ['../apps', '../conf', '.']
+sys.path += ['apps', 'conf', '{{site_name}}']
+settings_mod = '{{site_name}}.settings'
 
 
 try:
-    import settings  # Assumed to be in the same directory.
+    __import__(settings_mod)
 except ImportError:
     import sys
     sys.stderr.write("""
-        Error: Can't find the file 'settings.py' in the directory containing %r.
-        It appears you've customized things.\n
-        You'll have to run django-admin.py, passing it your settings module.\n
-        (If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n""" % __file__)
+        Can't find the file settings module. It appears you've customized things.\n
+        You'll have to run django-admin.py, passing it your settings module.\n """)
     sys.exit(1)
 
 if __name__ == "__main__":
     from django.core.management import execute_from_command_line
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_mod)
     execute_from_command_line()
