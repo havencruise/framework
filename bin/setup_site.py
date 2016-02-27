@@ -12,7 +12,7 @@ BASE_DIR = os.path.abspath(
 
 TEMPLATES_DIR = "%s/conf/.framework/templates" % BASE_DIR
 RESOURCES_DIR = "%s/%s" % (BASE_DIR, "static")
-MEDIA_DIR = "%s/%s" % (BASE_DIR, "media")
+MEDIA_DIR = "%s/%s" % (BASE_DIR, "upload")
 STATIC_DIRS = ("js", "swf", "css", "img")
 SITE_DIR = '%s/%s', (BASE_DIR, 'default_site_name')
 
@@ -46,7 +46,7 @@ def create_site(name,
     managepy_file = open(os.path.join(BASE_DIR, 'manage.py'), 'w+')
     managepy_file.write(managepy_file_contents)
     managepy_file.close()
-    os.chmod(os.path.join(BASE_DIR, 'manage.py'), 755)
+    os.chmod(os.path.join(BASE_DIR, 'manage.py'), 0755)
 
     # copy template framework into site directory
     shutil.copytree("%s/" % templates_dir,
