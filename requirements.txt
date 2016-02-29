@@ -1,5 +1,5 @@
 # BASE DEFAULT libs -- DO NOT REMOVE ANY
-    django==1.7.10
+    django==1.8.9
     django-extensions>=1.2.5
     ConcurrentLogHandler
     django-picklefield>=0.3.1
