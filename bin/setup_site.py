@@ -12,7 +12,6 @@ BASE_DIR = os.path.abspath(
 
 TEMPLATES_DIR = "%s/conf/.framework/templates" % BASE_DIR
 RESOURCES_DIR = "%s/%s" % (BASE_DIR, "static")
-MEDIA_DIR = "%s/%s" % (BASE_DIR, "upload")
 STATIC_DIRS = ("js", "swf", "css", "img")
 SITE_DIR = '%s/%s', (BASE_DIR, 'default_site_name')
 
@@ -25,8 +24,7 @@ def dir_exists(name, directory):
 def create_site(name,
                 directory=SITE_DIR,
                 templates_dir=TEMPLATES_DIR,
-                static_dir=RESOURCES_DIR,
-                media_dir=MEDIA_DIR):
+                static_dir=RESOURCES_DIR):
 
     if not directory:
         sys.stderr.write(

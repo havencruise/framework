@@ -14,8 +14,10 @@ You should setup your virtualenv in the root directory.
 
 ### Usage
 
-	pip install -r requirements.txt
-	python bin/setup_site.py <site_name>
+    cd <checkout-location>
+    virtualenv env
+    pip install -r requirements.txt
+    python bin/setup_site.py <site_name>
 
 ### Environment import order
 

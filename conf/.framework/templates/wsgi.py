@@ -11,9 +11,12 @@ try:
 except:
     os.environ['DJANGO_ENVIRONMENT'] = 'local'
 
-sitename = os.path.dirname(os.path.abspath(__file__)).split('/')[-1]
-sys.path += ['../apps', '../conf', '..']
-settings_mod = '%s.settings' % sitename
+os.environ['DJANGO_SITE_NAME'] = os.path.dirname(
+    os.path.abspath(__file__)).split('/')[-1]
+
+sys.path += ['../apps', '../conf', '%s' % os.environ['DJANGO_SITE_NAME']]
+settings_mod = '%s.settings' % os.environ['DJANGO_SITE_NAME']
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_mod)
 
 try:
     __import__(settings_mod)
@@ -21,9 +24,10 @@ try:
 except ImportError:
     import sys
     sys.stderr.write("""Error:
-        Can't find the file settings module. It appears you've customized things.\n
-        You'll have to run django-admin.py, passing it your settings module.\n """)
+        Can't find the 'settings.py' or 'settings' module.
+        It appears you've customized things.You'll have to run django-admin.py,
+        passing it your settings module.(If the file settings.py does indeed exist,
+        it's causing an ImportError somehow.)\n""")
     sys.exit(1)
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_mod)
 application = get_wsgi_application()

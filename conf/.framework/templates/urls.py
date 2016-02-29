@@ -6,13 +6,13 @@ from core.utils.renderutils import render_to
 
 admin.autodiscover()
 
+
 @render_to('index.html')
 def default_view(request):
     return {}
 
-urlpatterns = patterns('', 
-    # (r'^static/(?P<path>.*)$', 
-    #     'django.views.static.serve', { 'document_root': '../resources/'}),
+urlpatterns = patterns(
+    '',
     (r'^__admin__/', include(admin.site.urls)),
     (r'^/?$', 'urls.default_view'),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -21,8 +21,9 @@ urlpatterns = patterns('',
 if not settings.DEBUG:
     # Coz django refuses to serve static files when debug is turned off
     # Talk to the hand
-    urlpatterns += patterns('',
-        (r'static/(?P<path>.*)$', 
-            'django.views.static.serve', 
-            {'document_root': '../../resources/'}),
+    urlpatterns += patterns(
+        '',
+        (r'static/(?P<path>.*)$',
+            'django.views.static.serve',
+            {'document_root': settings.STATIC_ROOT}),
     )

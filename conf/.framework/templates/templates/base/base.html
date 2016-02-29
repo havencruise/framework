@@ -28,69 +28,52 @@
   <link href="https://plus.google.com/123456789012345678901" rel="publisher" />
 
   {% block head-css %}
-    {% compressed_css 'core' %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   {% endblock head-css %}
-
-  {% block head-js %}
-  <script type="text/javascript">
-    var _MEDIA_URL = "{{MEDIA_URL}}";
-    var _STATIC_URL = "{{STATIC_URL}}";
-    {% if request.user.id %}
-      var _USER_ID = {{request.user.id}};
-      var _USER_NAME = "{{request.user.username}}";
-    {% else %}
-      var _USER_ID = -1;
-    {% endif %}
-  </script>
-  {% compressed_js 'core' %}
-  {% endblock head-js %}
-
-  {% block head-extra-js %}{% endblock %}
   {% block head-extra-css %}{% endblock %}
 
 {% endblock head %}
 </head>
 
 <body class="{% block body-class %}{% endblock %}">
-  <div class="container">
-    <header class="clearfix">
-
-      <a href="/" class="logo">
-        <!-- <img src="" title="Default logo, please change"/>  -->
-        Site Name
-      </a>
-
-      <ul class="clearfix f-right account">
-        {% if request.user.id %}
-          <li class="username">{{request.username}}</li>
-          <li><a href="#">Logout</a></li>
-        {% else %}
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
-        {% endif %}
-          <li><input type="search" /></li>
-      </ul>
-
-
-      <nav class="f-right">
-        <ul class="clearfix">
-          <li><a href="/">Nav 1</a>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Site name</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Dashboard</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-      </nav>
-
-    </header>
-
-    <div id="body">
-    {% block body %}
-
-    You need to update body tag for there to be anything here....
-
-    {% endblock %}
+      </div><!--/.nav-collapse -->
     </div>
-
-    <footer class="clearfix">
-      
-    </footer>
+  </nav>
+  <div class="container">
+    {% block body %}
+      <h1>Django skeleton template</h1>
+      <p class="lead">Use this as a way to quickly start any new project.<br> You need to update body tag for there to be anything here.</p>
+    {% endblock %}
+    <footer class="clearfix"> </footer>
   </div>
+
+  {% block head-js %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  var _MEDIA_URL = "{{MEDIA_URL}}",
+      _STATIC_URL = "{{STATIC_URL}}",
+      _USER_ID = parseInt("{% if request.user.id %}{{request.user.id}}{% else %}-1{% endif %}"),
+      _USER_NAME = "{{request.user.username}}";
+  </script>
+  {% endblock head-js %}
+  {% block head-extra-js %}{% endblock %}
 </body>
 </html>
