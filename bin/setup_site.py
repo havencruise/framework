@@ -64,13 +64,6 @@ def create_site(name,
         except:
             pass
 
-    # make media_dir
-    try:
-        os.makedirs("%s" % media_dir)
-        sys.stdout.write("\tCreated %s\n" % media_dir)
-    except:
-        pass
-
 
 def generate_secret_key(site_name, directory=SITE_DIR):
     from django.utils.crypto import get_random_string
