@@ -11,12 +11,6 @@ for i in sys.argv:
         break
 
 os.environ['DJANGO_SITE_NAME'] = '{{site_name}}'
-
-if os.name in ("nt", "dos"):
-    os.environ['DJANGO_SITE_NAME'] = os.path.dirname(os.path.abspath(__file__)).split('\\')[-1]
-else:
-    os.environ['DJANGO_SITE_NAME'] = os.path.dirname(os.path.abspath(__file__)).split('/')[-1]
-
 project_name = os.environ['DJANGO_SITE_NAME']
 
 try:

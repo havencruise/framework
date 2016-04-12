@@ -8,7 +8,6 @@ BASE_DIR = os.path.abspath(os.path.join(
     '../../'))
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Your Name', 'email@gmail.com'),
@@ -45,7 +44,6 @@ MIDDLEWARE_CLASSES = (
     'core.middleware.BaseTemplateSetter'
 )
 
-# NB (2015-09-15): This raises a (1_6.W001) warning about unittests.
-# SITE_ID = 1     # you should change this if its multi site
+SITE_ID = 1     # you should change this if its multi site
 
 # SECURITY WARNING: keep the secret key used in production secret!

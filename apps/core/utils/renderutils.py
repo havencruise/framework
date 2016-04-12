@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.conf import settings
 
@@ -70,44 +70,39 @@ def get_templates_for_request(templates, request=None, device_template=None):
 def device_aware_render_to_response(*args, **kwargs):
     """
     Injects device detect template names if settings.DEVICE_TEMPLATE_ENABLED
-    before passing to django's render_to_response
+    before passing to django's render
 
     See middleware.DeviceTemplateDetect for more information
     """
 
-    if not hasattr(settings, 'DEVICE_TEMPLATE_ENABLED'):
-        return render_to_response(*args, **kwargs)
+    if not getattr(settings, 'DEVICE_TEMPLATE_ENABLED', False):
+        return render(*args, **kwargs)
 
-    if settings.DEVICE_TEMPLATE_ENABLED:
-        _device_template = get_alternate_template(kwargs.get('context_instance', None))
+    else:
+        _device_template = get_alternate_template(
+            kwargs.get('context_instance', None))
 
         if _device_template is None:
-            return render_to_response(*args, **kwargs)
+            return render(*args, **kwargs)
 
         _args = [arg for arg in args]
-        _template = _args.pop(0)
-        _templates = [arg for arg in _template if isinstance(_template, (list, tuple))]
+        _template = _args.pop(1)
+        _templates = [
+            arg for arg in _template if isinstance(_template, (list, tuple))
+        ]
         if len(_templates) == 0:
             _templates.append(_template)
 
         device_templates = get_templates_for_request(
             _templates, device_template=_device_template)
 
-        # device_templates = []
-        # for template in _templates:
-        #    device_template = template.replace('.html', '.%s.html' % _device_template)
-        #    device_templates.append(device_template)
-        #    device_templates.append(template)
-
-        _args.insert(0, device_templates)
-        return render_to_response(*_args, **kwargs)
-
-    return render_to_response(*args, **kwargs)
+        _args.insert(1, device_templates)
+        return render(*_args, **kwargs)
 
 
 def render_to(template):
     """
-    Decorator for Django views that sends returned dict to render_to_response function
+    Decorator for Django views that sends returned dict to render function
     with given template and RequestContext as context instance.
 
     If view doesn't return dict then decorator simply returns output.
@@ -126,10 +121,10 @@ def render_to(template):
             output = func(request, *args, **kw)
             if isinstance(output, (list, tuple)):
                 return device_aware_render_to_response(
-                    output[1], output[0], context_instance=RequestContext(request))
+                    request, output[1], output[0])
             elif isinstance(output, dict):
                 return device_aware_render_to_response(
-                    template, output, context_instance=RequestContext(request))
+                    request, template, output)
             return output
         return wrapper
     return renderer

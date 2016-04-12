@@ -17,21 +17,21 @@ LOGGING = {
     'handlers': {
         'null': {
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
-        'file': {
-            'level': 'INFO',
-            'class': 'cloghandler.ConcurrentRotatingFileHandler',
-            'filename': '/tmp/' + SITE_NAME + '.log',
-            'maxBytes': 10 * 1024 * 1024,   # 10MB
-            'backupCount': 5,
-            'formatter': 'verbose'
-        },
+        # 'file': {
+        #     'level': 'INFO',
+        #     'class': 'cloghandler.ConcurrentRotatingFileHandler',
+        #     'filename': '/tmp/' + SITE_NAME + '.log',
+        #     'maxBytes': 10 * 1024 * 1024,   # 10MB
+        #     'backupCount': 5,
+        #     'formatter': 'verbose'
+        # },
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
@@ -41,11 +41,6 @@ LOGGING = {
     },
 
     'loggers': {
-        # 'django': {
-        #     'handlers':['console', 'mail_admins'],
-        #     'propagate': True,
-        #     'level':'ERROR',
-        # },
         'django': {
             'handlers': ['console'],
             'propagate': True,
